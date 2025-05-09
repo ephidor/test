@@ -10,7 +10,6 @@ Set-NetFirewallRule -DisplayName "Remote Desktop - User Mode (UDP-In)" -enabled 
 # Install IIS
 Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
 # Replace IIS Page with Server Name for Identification Purposes
->>>>>>> 9370654a603a567d2996168a5ef2682c3d71f71a:vmsetup.ps1
 iex hostname | out-file -filepath c:\inetpub\wwwroot\iisstart.htm -Force
 #install ADDS
 Install-windowsfeature AD-domain-services
