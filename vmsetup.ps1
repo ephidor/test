@@ -7,7 +7,9 @@ Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv
 # Allow RDP
 Set-NetFirewallRule -DisplayName "Remote Desktop - User Mode (TCP-In)" -enabled True    
 Set-NetFirewallRule -DisplayName "Remote Desktop - User Mode (UDP-In)" -enabled True
-# Install IIS
-Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
-# Replace IIS Page with Server Name for Identification Purposes
-iex hostname | out-file -filepath c:\inetpub\wwwroot\iisstart.htm -Force
+# Install apps
+Set-ExecutionPolicy Bypass -Scope Process -Force
+iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+choco install notepadplusplus -y
+choco install adobereader -y
+choco install microsoft-teams.install -y
