@@ -11,19 +11,3 @@ Set-NetFirewallRule -DisplayName "Remote Desktop - User Mode (UDP-In)" -enabled 
 Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
 # Replace IIS Page with Server Name for Identification Purposes
 iex hostname | out-file -filepath c:\inetpub\wwwroot\iisstart.htm -Force
-#install ADDS
-Install-windowsfeature AD-domain-services
-Import-Module ADDSDeployment
-
-Install-ADDSForest
- -CreateDnsDelegation:$false `
- -DatabasePath "C:\Windows\NTDS" `
- -DomainMode "Win2016" `
- -DomainName "mps.com" `
- -DomainNetbiosName "mps" `
- -ForestMode "Win2019" `
- -InstallDns:$true `
- -LogPath "C:\Windows\NTDS" `
- -NoRebootOnCompletion:$false `
- -SysvolPath "C:\Windows\SYSVOL" `
- -Force:$true
